@@ -1,0 +1,68 @@
+{% extends "engine/base.html" %}
+{% load static %}
+{% load info_tags %}
+
+{% block title %}
+    <title>{{ celebrity.name }}(影擎)</title>
+{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'engine/styles/info.css' %}" rel="stylesheet">
+    <link href="{% static 'engine/styles/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <div class="info">
+        <p class="info-title">{{ celebrity.name }}</p>
+        <div class="info-head">
+            <div class="celebrity-box">
+                {% celebrity_image celebrity as celebrity_image %}
+                <img src={% static celebrity_image %}/>
+            </div>
+            <div class="head-info">
+                <p>性别: {{celebrity.gender}}</p>
+                <p>出生日期: {{ celebrity.birthday }}</p>
+                <p>出生地: {{ celebrity.birthplace }}</p>
+                <p>职业: {% slash_join celebrity.occupation %}</p>
+                <p>家人: {% slash_join celebrity.families %}</p>
+                <p>别名: {% slash_join celebrity.other_names %}</p>
+            </div>
+        </div>
+        <span class="info-divider">{{ celebrity.name }}的简介: </span>
+        <div class="info-intro">
+            {% to_list celebrity.intro as intros %}
+            {% for intro in intros %}
+                <p>{{ intro }}</p>
+            {% endfor %}
+        </div>
+        <span class="info-divider">{{ celebrity.name }}的参演电影: </span>
+        <div class="info-container">
+            {% for movie in movies %}
+                <div class="movie-box-short">
+                    {% movie_image movie as movie_image %}
+                    <img src={% static movie_image %}/>
+                    <span class="mylink">
+                        <a href={% url 'engine:movie_info' movie.index %}>
+                            {{ movie.name }}
+                        </a>
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+        <span class="info-divider">{{ celebrity.name }}的合作演员: </span>
+        <div class="info-container">
+            {% for coactor in coactors %}
+            <div class="celebrity-box">
+                {% celebrity_image_from_index coactor.index as coactor_image %}
+                <img src={% static coactor_image %}/>
+                <span class="mylink">
+                    <a href={% url 'engine:celebrity_info' coactor.index %}>
+                        {% celebrity_name_from_index coactor.index %} (<strong>{{ coactor.times }}</strong>)
+                    </a>
+                </span>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

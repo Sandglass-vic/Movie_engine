@@ -1,0 +1,78 @@
+{% extends "engine/base.html" %}
+{% load static %}
+{% load info_tags %}
+
+{% block title %}
+    <title>{{ movie.name }}(影擎)</title>
+{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'engine/styles/info.css' %}" rel="stylesheet">
+    <link href="{% static 'engine/styles/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <div class="info">
+        <p class="info-title">{{ movie.name }}  ({{ movie.year }})</p>
+        <div class="info-head">
+            <div class="movie-box movie-box-short">
+                {% movie_image movie as movie_image %}
+                <img src={% static movie_image %}/>
+                <p>
+                    <strong>
+                        评分: {{ movie.rank }}
+                    </strong>
+                </p>
+            </div>
+            <div class="head-info">
+                <p>导演: {% slash_join movie.director %}</p>
+                <p>编剧: {% slash_join movie.writer %}</p>
+                <p>主演:
+                    {% for actor in actors %}
+                        <span class="mylink">
+                            <a href={% url 'engine:celebrity_info' actor.index %}>
+                                {{ actor.name }}
+                            </a>
+                        </span>
+                        /
+                    {% endfor %}
+                </p>
+                <p>类型: {% slash_join movie.genre %}</p>
+                <p>制片国家/地区: {% slash_join movie.region %}</p>
+                <p>语言: {{movie.language}}</p>
+                <p>上映日期: {% slash_join movie.release_date %}</p>
+                <p>片长: {{ movie.runtime }} 分钟</p>
+                <p>又名: {% slash_join movie.other_names %}</p>
+            </div>
+        </div>
+        <span class="info-divider">{{ movie.name }}的剧情简介: </span>
+        <div class="info-intro">
+            {% to_list movie.intro as intros %}
+            {% for intro in intros %}
+                <p>{{ intro }}</p>
+            {% endfor %}
+        </div>
+        <span class="info-divider">{{ movie.name }}的演员们: </span>
+        <div class="info-container">
+            {% for actor in actors %}
+                <div class="celebrity-box">
+                    {% celebrity_image actor as actor_image %}
+                    <img src={% static actor_image %}/>
+                    <span class="mylink">
+                        <a href={% url 'engine:celebrity_info' actor.index %}>
+                            {{ actor.name }}
+                        </a>
+                    </span>
+                </div>
+            {% endfor %}
+        </div>
+        <span class="info-divider">{{ movie.name }}的影评: </span>
+        <div>
+            {% for review in reviews %}
+            <div class="review-box">
+                <p>{{ review.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

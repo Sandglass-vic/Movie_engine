@@ -1,0 +1,93 @@
+.info{
+    width: 70vw;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.info-container{
+    magin: 10px 0;
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.info-title{
+    color: #171a1d;
+    font-size: 32px;
+    font-weight: lighter;
+    text-indent: 1.5rem;
+}
+
+.info-head{
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.head-info{
+    width: 40vw;
+    margin-top: 10px;
+    margin-left: 3vw;
+}
+
+.info-divider{
+    display: block;
+    margin: 1rem 0;
+    color: #218838;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.info{
+    height: auto;
+}
+
+.info-intro p{
+    margin: 0.2rem 0;
+    display: block;
+    text-indent: 2rem;
+}
+
+.review-box{
+    text-indent: 2rem;
+    font-weight: lighter;
+}
+
+.celebrity-box {
+    margin: 1vw;
+    width: 12vw;
+    height: 20vw;
+}
+
+.celebrity-box img{
+    margin: auto;
+    width: 12vw;
+    height: 17vw;
+}
+
+.celebrity-box a{
+    margin-top: 0.5rem;
+    display: block;
+    text-align: center;
+}
+
+.movie-box-short{
+    margin: 1vw;
+    width: 12vw;
+    height: 24vw;
+}
+
+.movie-box-short img{
+    width: 12vw;
+    height: 19vw;
+}
+
+.movie-box-short a{
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+

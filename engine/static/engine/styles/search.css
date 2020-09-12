@@ -1,0 +1,93 @@
+.search-container{
+    margin: 20px 15vw 0 15vw;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: start;
+}
+
+.query-info{
+    margin: 0.5rem;
+    color: #0f6674;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.search-item{
+    margin: 1.5vw;
+    height: 15vw;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.search-item img{
+    width: 10vw;
+    height: 15vw;
+}
+
+.search-item-info{
+    font-weight: lighter;
+    margin-left: 1.5vw;
+    width: 55vw;
+}
+
+.search-item-title{
+    font-weight: normal;
+    margin-top: 0.5rem!important;
+    margin-bottom: 0.5rem!important;
+}
+
+.search-item-info p{
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+.search-item-short{
+    margin: 1.5vw;
+    height: 9vw;
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.search-item-short img{
+    width: 7.2vw;
+    height: 10vw;
+}
+
+.mylink-green a:link{
+    color: #155724;
+    text-decoration: none;
+    border-color: transparent;
+}
+
+.mylink-green a:hover{
+    color: #343a40;
+    text-decoration: none;
+    border-color: transparent;
+}
+
+.mylink-green a:visited {
+    color: #155724;
+    text-decoration: none;
+    border-color: transparent;
+}
+
+.search-review-box{
+    margin: 3vw auto 3.5vw 0;
+    width: 60vw;
+    height: auto;
+}
+
+.search-review-box .info-divider{
+    display: block;
+}
+
+.search-review-box p{
+    text-indent: 2rem;
+    font-weight: lighter;
+}

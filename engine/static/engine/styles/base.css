@@ -1,0 +1,63 @@
+.nav-title{
+    color: #155724!important;
+    font-size: 23px;
+    font-weight: lighter;
+}
+
+.nav-bar-select{
+    max-width: 4.75rem!important;
+}
+
+.nav-bar-form{
+    margin-left: 3vw;
+}
+
+.nav-bar-input{
+    min-width: 25rem;
+}
+
+.nav-bar-search-icon{
+    width: 22px;
+    height: 22px;
+}
+
+.mylink a:link{
+    color: rgba(0,0,0,.5);
+    text-decoration: none;
+    border-color: transparent;
+}
+
+.mylink a:hover{
+    color: #343a40;
+    text-decoration: none;
+    border-color: transparent;
+}
+
+.mylink a:visited {
+    color: rgba(0,0,0,.5);
+    text-decoration: none;
+    border-color: transparent;
+}
+
+footer {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    text-align: center;
+    color: #5a6268;
+    font-weight: lighter;
+}
+
+strong{
+    display: inline-block;
+    color: #ffc107;
+}
+
+.highlight{
+    color: #ffc107;
+}
+
+.hl-able{
+
+}

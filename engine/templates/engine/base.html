@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}
+    {% endblock %}
+    <meta charset="UTF-8">
+    <meta name="author" content="Victor">
+    <meta name="description" content="An easy engine for movie search.">
+    <link href="{% static 'engine/styles/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'engine/styles/base.css' %}" rel="stylesheet">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand nav-title" href={% url 'engine:index' %}>影擎</a>
+        <ul class="navbar-nav">
+            <li class="nav-item" style="width: 4.2rem;padding-left: 1.2rem">
+                <a class="nav-link" href={% url 'engine:index' %}>主页</a>
+            </li>
+            <li class="nav-item" style="width: 4.2rem;padding-left: 1.2rem">
+                <a class="nav-link" href={% url 'engine:movies_info' %}>电影</a>
+            </li>
+            <li class="nav-item" style="width: 4.2rem;padding-left: 1.2rem">
+                <a class="nav-link" href={% url 'engine:celebrities_info' %}>演员</a>
+            </li>
+        </ul>
+        <div class="input-group" style="width: 50vw">
+            <form class="form-inline my-2 my-lg-0 nav-bar-form" action="{% url 'engine:search' %}">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">搜索</label>
+                    <select class="custom-select nav-bar-select" id="inputGroupSelect01" name="search_type">
+                    <option value="movie" selected>电影</option>
+                    <option value="celebrity">演员</option>
+                    <option value="review">评论</option>
+                    </select>
+                </div>
+            <input class="form-control mr-sm-0 nav-bar-input" type="search" name="keyword" placeholder="电影、演员或评论的关键字" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <img class="nav-bar-search-icon" src="{% static 'engine/images/else/search-icon.png' %}"/>
+            </button>
+        </form>
+        </div>
+    </nav>
+    <main>
+    {% block main %}
+    {% endblock %}
+    {% block nav-bottom %}
+    {% endblock %}
+    </main>
+    <footer>
+        <hr/>
+        <p>2020 © Victor | All rights reserved </p>
+    </footer>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

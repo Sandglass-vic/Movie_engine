@@ -1,0 +1,116 @@
+{% extends "engine/base.html" %}
+{% load static %}
+{% load info_tags %}
+
+{% block title %}
+    <title>{{ keyword }}-演员-影擎搜索</title>
+{% endblock %}
+
+{% block styles %}
+    <link href="{% static 'engine/styles/index.css' %}" rel="stylesheet">
+    <link href="{% static 'engine/styles/nav.css' %}" rel="stylesheet">
+    <link href="{% static 'engine/styles/search.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+    <div class="search-container">
+    <span class="query-info">总共搜索到<strong>{{ all_num }}</strong>名与<strong>{{ keyword }}</strong>相关的演员,搜索时间
+    <strong>{{time_cost}}</strong> 秒。现在位于第<strong>{{ page.number }}</strong>/{{ page.paginator.num_pages }}页。
+    </span>
+    {% for celebrity in page %}
+        <div class="search-item-short">
+            {% celebrity_image celebrity as celebrity_image %}
+            <img src={% static celebrity_image %}>
+            <div class="search-item-info" style="width: 50vw">
+                <p class="search-item-title">
+                <span class="mylink" >
+                <a class="hl-able" href="{% url 'engine:celebrity_info' celebrity.index%}">
+                   {{ celebrity.name }}
+                </a>
+                </span>
+                </p>
+                <p>{% slash_join celebrity.occupation %}/{% slash_join celebrity.birthday %}</p>
+                <p>
+                    {% celebrity_movies celebrity as movies %}
+                    {% for movie in movies %}
+                        <span class="mylink">
+                            <a class="hl-able" href={% url 'engine:movie_info' movie.index %}>
+                                {{ movie.name }}
+                            </a>
+                        </span>
+                        /
+                    {% endfor %}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
+
+{% block nav-bottom %}
+        {% if page %}
+        <nav class="nav-bottom">
+        <ul class="pagination" style="margin: 0.2rem 0 0 1.5vw; vertical-align: middle">
+          <li class="page-item">
+            <a class="page-link" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ 1 }}" aria-label="First">
+                <img src="{% static 'engine/images/else/first.png' %}">
+            </a>
+          </li>
+          {% if page.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ page.previous_page_number }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          {% endif %}
+          {% get_min page_num_range as min %}
+          {% if min >= 2 %}
+               <li class="page-item">
+                  <a class="page-link">...</a>
+              </li>
+          {% endif %}
+          {% for num in page_num_range %}
+            {% if num == page.number %}
+              <li class="page-item">
+                  <a class="page-link selected" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ num }}">{{ num }}</a>
+              </li>
+            {% else %}
+              <li class="page-item">
+                  <a class="page-link" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ num }}">{{ num }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% get_max page_num_range as max %}
+          {% if max < page.paginator.num_pages %}
+              <li class="page-item">
+                  <a class="page-link">...</a>
+              </li>
+          {% endif %}
+          {% if page.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ page.next_page_number }}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          {% endif %}
+            <li class="page-item">
+            <a class="page-link" href="?search_type={{ search_type }}&keyword={{ keyword }}&page={{ page.paginator.num_pages }}" aria-label="Last">
+                <img src="{% static 'engine/images/else/last.png' %}">
+            </a>
+            </li>
+        </ul>
+        <form class="form-inline nav-bottom-form" method="get">
+        <input name="search_type" value="{{ search_type }}" style="display: none"/>
+        <input name="keyword" value="{{ keyword }}" style="display: none"/>
+        <input class="form-control mr-sm-0 nav-bottom-input" type="search" name="page" aria-label="Page">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                <img class="nav-bar-search-icon" src="{% static 'engine/images/else/jump.png' %}"/>
+            </button>
+        </form>
+      </nav>
+    {% endif %}
+{% endblock %}
+
+{% block scripts%}
+    <script src={% static 'engine/scripts/highlight.js' %}></script>
+{% endblock %}
