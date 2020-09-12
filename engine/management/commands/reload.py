@@ -85,5 +85,6 @@ class Command(BaseCommand):
                         if celebrity.coactor_set.filter(index=other_index):
                             coactor = celebrity.coactor_set.get(index=other_index)
                             coactor.times += 1
+                            coactor.save()
                         else:
                             Coactor.objects.create(index=other_index, from_who=celebrity)

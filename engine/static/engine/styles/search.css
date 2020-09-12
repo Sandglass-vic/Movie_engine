@@ -16,7 +16,7 @@
 
 .search-item{
     margin: 1.5vw;
-    height: 15vw;
+    height: auto;
     width: 80vw;
     display: flex;
     flex-direction: row;
@@ -47,7 +47,7 @@
 
 .search-item-short{
     margin: 1.5vw;
-    height: 9vw;
+    height: auto;
     width: 80vw;
     display: flex;
     flex-direction: row;
